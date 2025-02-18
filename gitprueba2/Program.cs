@@ -1,4 +1,7 @@
 
+using gitprueba2.Models;
+using Microsoft.EntityFrameworkCore;
+
 namespace gitprueba2
 {
     public class Program
@@ -10,6 +13,12 @@ namespace gitprueba2
             // Add services to the container.
 
             builder.Services.AddControllers();
+
+            // Inyección
+            builder.Services.AddDbContext<BibliotecaContext>(options =>
+            options.UseSqlServer(
+                builder.Configuration.GetConnectionString("bibliotecaDbConnection"))
+            );
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
